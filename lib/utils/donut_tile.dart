@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class DonutTile extends StatelessWidget {
   final String donutFlavor;
   final String donutPrice;
+  final String donutShop;
   //dyanamic porque será de tipo color
   final dynamic donutColor;
   final String imageName;
@@ -12,7 +13,8 @@ class DonutTile extends StatelessWidget {
       required this.donutFlavor,
       required this.donutPrice,
       required this.donutColor,
-      required this.imageName});
+      required this.imageName,
+      required this.donutShop});
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +63,7 @@ class DonutTile extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
                       color: Colors.black)),
-              Text('Dunkin\'s',
+              Text(donutShop,
                   style: TextStyle(fontSize: 13, color: Colors.blueGrey)),
               //Icons
               Row(
