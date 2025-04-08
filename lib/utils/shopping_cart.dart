@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ShoppingCart extends StatelessWidget {
+  final int itemCount;
+  final double totalPrice;
+
   const ShoppingCart({
     super.key,
+    required this.itemCount,
+    required this.totalPrice,
   });
 
   @override
@@ -13,13 +18,13 @@ class ShoppingCart extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Padding(
+          Padding(
               padding: EdgeInsets.only(left: 28),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '2 Items | \$95',
+                    '$itemCount Items | \$$totalPrice',
                     style: TextStyle(fontWeight: FontWeight.w800, fontSize: 18),
                   ),
                   Text('Delivery Charges Included')

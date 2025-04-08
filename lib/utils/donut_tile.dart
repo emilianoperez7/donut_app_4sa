@@ -7,6 +7,7 @@ class DonutTile extends StatelessWidget {
   //dyanamic porque será de tipo color
   final dynamic donutColor;
   final String imageName;
+  final ValueChanged<double> onAdd;
 
   const DonutTile(
       {super.key,
@@ -14,7 +15,8 @@ class DonutTile extends StatelessWidget {
       required this.donutPrice,
       required this.donutColor,
       required this.imageName,
-      required this.donutShop});
+      required this.donutShop,
+      required this.onAdd});
 
   @override
   Widget build(BuildContext context) {
@@ -52,10 +54,13 @@ class DonutTile extends StatelessWidget {
                 ],
               ),
               //Donut price
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                child: Image.asset(imageName),
+              SizedBox(
+                height: 120,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                  child: Image.asset(imageName),
+                ),
               ),
               //Donut flavor
               Text(donutFlavor,
@@ -79,7 +84,10 @@ class DonutTile extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(right: 10),
                     child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          double price = double.tryParse(donutPrice) ?? 0.0;
+                          onAdd(price);
+                        },
                         child: Text('Add',
                             style: TextStyle(
                                 fontSize: 20,

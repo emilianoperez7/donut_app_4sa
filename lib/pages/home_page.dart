@@ -18,20 +18,36 @@ class _HomePageState extends State<HomePage> {
   List<Widget> myTabs = [
     const MyTab(
       iconPath: 'lib/icons/donut.png',
+      label: 'Donuts',
     ),
     const MyTab(
       iconPath: 'lib/icons/burger.png',
+      label: 'Burgers',
     ),
     const MyTab(
       iconPath: 'lib/icons/smoothie.png',
+      label: 'Smoothies',
     ),
     const MyTab(
       iconPath: 'lib/icons/pancakes.png',
+      label: 'Pancakes',
     ),
     const MyTab(
       iconPath: 'lib/icons/pizza.png',
+      label: 'Pizzas',
     ),
   ];
+
+  int itemCount = 0; //cantidad de items en el carrito
+  double totalPrice = 0.0; //total de la compra
+
+  //Método para agregar un producto al carrito
+  void addItemToCart(double price) {
+    setState(() {
+      itemCount++;
+      totalPrice += price;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,16 +91,16 @@ class _HomePageState extends State<HomePage> {
               //3. Contenido de pestañas (TabBarView)
               Expanded(
                 child: TabBarView(children: [
-                  DonutTab(),
-                  BurgerTab(),
-                  SmoothieTab(),
-                  PancakesTab(),
-                  PizzaTab()
+                  DonutTab(onAdd: addItemToCart),
+                  BurgerTab(onAdd: addItemToCart),
+                  SmoothieTab(onAdd: addItemToCart),
+                  PancakesTab(onAdd: addItemToCart),
+                  PizzaTab(onAdd: addItemToCart)
                 ]),
               ),
 
               //4. Carrito (Cart)
-              const ShoppingCart()
+              ShoppingCart(itemCount: itemCount, totalPrice: totalPrice),
             ],
           )),
     );
